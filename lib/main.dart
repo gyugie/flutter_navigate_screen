@@ -1,52 +1,34 @@
 import 'package:flutter/material.dart';
 
-void main(){
-  runApp(MaterialApp(
-      title: "Navigations Basic",
-      initialRoute: '/',
-      routes: {
-        '/' : (context) => FirstRoute(),
-        '/second' : (context) => SecondRoute(),
-      },
-    ));
-}
+class PassArgumentsScreen extends StatelessWidget {
+  static const routeName = '/passArguments';
 
-class FirstRoute extends StatelessWidget {
+  final String title;
+  final String message;
+
+
+  PassArgumentsScreen({
+    Key key,
+    @required this.title,
+    @required this.message,
+  }) : super (key : key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('First Route'),
-      ),
-      body: Center(
-        child: RaisedButton(
-          child: Text('Open Route'),
-          onPressed: (){
-            //Navigate to second route when tapped
-              Navigator.pushNamed(context, '/second');
-          },
+        appBar: AppBar(
+          title: Text(title),
         ),
-      ),
+        body: Center(
+          child: Text(message),
+        ),
     );
   }
 }
 
-class SecondRoute extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Second Route'),
-      ),
-      body: Center(
-        child: RaisedButton(
-          onPressed: (){
-            //navigate back to first route when tappef
-            Navigator.pop(context);
-          },
-          child: Text('Go Back!'),
-          ),
-        ),
-    );
-  }
+class ScreenArguments {
+  final String title;
+  final String message;
+  
+  ScreenArguments(this.title, this.message);
 }
